@@ -6,28 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reproductor de canciones</title>
     <style>
-        body,
-        html {
-            height: 100%;
-            margin: 0;
+        /* Estilos para la imagen */
+        #headerImage {
+            width: 80%;
+            max-width: 300px; /* Ancho máximo de la imagen */
+            display: block;
+            margin: 20px auto; /* Centrar horizontalmente */
+        }
+
+        /* Estilos para el cuerpo de la página */
+        body {
+            background-color: #000; /* Cambia el color de fondo de la página */
             display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
+            flex-direction: column; /* Apila los elementos verticalmente */
+            align-items: center; /* Centra horizontalmente */
+            justify-content: flex-start; /* Alinea los elementos en la parte superior */
+            height: 100vh; /* Ocupa todo el alto de la ventana */
+            color: #fff; /* Cambia el color del texto */
+            font-family: Arial, sans-serif; /* Cambia la fuente del texto */
         }
 
+        /* Estilos para el reproductor de audio */
         audio {
-            display: block;
+            margin-top: 50%; /* Alinea el reproductor al final del contenedor */
         }
-
-
-        audio {
-            display: block;
-            background-color: pink; /* Cambia el color de fondo del reproductor */
-            border: 2px solid hotpink; /* Cambia el color del borde del reproductor */
-            border-radius: 10px; /* Añade esquinas redondeadas al reproductor */
-        }
-
         /* Cambia el color de los controles de reproducción */
         audio::-webkit-media-controls-panel {
             background-color: pink;
@@ -36,6 +38,8 @@
 </head>
 
 <body>
+    <img id="headerImage" src="logo.webp" alt="Cabecera de la página">
+
     <audio controls autoplay id="audioPlayer">
         <!-- Este elemento se reemplazará con la URL generada dinámicamente -->
         <source src="" type="audio/mp3">
