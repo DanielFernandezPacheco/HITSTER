@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de canciones</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        audio {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <audio controls autoplay id="audioPlayer">
+        <!-- Este elemento se reemplazará con la URL generada dinámicamente -->
+        <source src="" type="audio/mp3">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+
+    <script>
+        // Función para obtener el valor del parámetro GET por nombre
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        window.onload = function() {
+            // Obtener el id del parámetro GET llamado 'id'
+            const songId = getParameterByName('id');
+
+            // Obtener el reproductor de audio
+            const audioPlayer = document.getElementById('audioPlayer');
+
+            // Generar la URL del archivo de audio en Dropbox con el id proporcionado
+            const songURL = `https://www.dropbox.com/home/lego?is_backup=False&preview=${songId}.mp3`;
+
+            // Asignar la URL generada al reproductor de audio
+            audioPlayer.src = songURL;
+        };
+    </script>
+</body>
+</html>
