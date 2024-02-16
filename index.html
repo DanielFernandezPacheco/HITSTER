@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reproductor de canciones</title>
     <style>
-        body, html {
+        body,
+        html {
             height: 100%;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: black;
         }
 
         audio {
             display: block;
         }
+
+
+        audio {
+            display: block;
+            background-color: pink; /* Cambia el color de fondo del reproductor */
+            border: 2px solid hotpink; /* Cambia el color del borde del reproductor */
+            border-radius: 10px; /* Añade esquinas redondeadas al reproductor */
+        }
+
+        /* Cambia el color de los controles de reproducción */
+        audio::-webkit-media-controls-panel {
+            background-color: pink;
+        }
     </style>
 </head>
+
 <body>
     <audio controls autoplay id="audioPlayer">
         <!-- Este elemento se reemplazará con la URL generada dinámicamente -->
@@ -37,7 +54,7 @@
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
 
-        window.onload = function() {
+        window.onload = function () {
             // Obtener el id del parámetro GET llamado 'id'
             const songId = getParameterByName('id');
 
@@ -52,4 +69,5 @@
         };
     </script>
 </body>
+
 </html>
