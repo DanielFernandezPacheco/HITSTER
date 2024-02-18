@@ -16,6 +16,7 @@ fetch('songs.json')
     })
     .catch(error => console.error('Error al cargar el JSON:', error));
 
+const imagen = document.getElementById('disco');
 
 audio.addEventListener('play', function () {
     // Añadir la clase 'rotando' para iniciar la rotación
