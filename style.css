@@ -31,9 +31,11 @@ audio::-webkit-media-controls-panel {
     background-color: pink;
 }
 
-.rotando {
+#disco{
     width: 200px; /* Ancho de la imagen */
     height: 200px; /* Alto de la imagen */
+}
+.rotando {
     animation: girar 2s linear infinite; /* Animación de rotación */
 }
 

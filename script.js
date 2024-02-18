@@ -18,19 +18,19 @@ fetch('songs.json')
 
 const imagen = document.getElementById('disco');
 
-audio.addEventListener('play', function () {
+audioPlayer.addEventListener('play', function () {
     // Añadir la clase 'rotando' para iniciar la rotación
     imagen.classList.add('rotando');
 });
 
 // Evento que se activa cuando el audio se pausa
-audio.addEventListener('pause', function () {
+audioPlayer.addEventListener('pause', function () {
     // Quitar la clase 'rotando' para detener la rotación
     imagen.classList.remove('rotando');
 });
 
 // Evento que se activa cuando el audio termina de reproducirse
-audio.addEventListener('ended', function () {
+audioPlayer.addEventListener('ended', function () {
     // Quitar la clase 'rotando' para detener la rotación
     imagen.classList.remove('rotando');
 });
