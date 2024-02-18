@@ -30,3 +30,19 @@ audio {
 audio::-webkit-media-controls-panel {
     background-color: pink;
 }
+
+.disco {
+    width: 200px; /* Ancho de la imagen */
+    height: 200px; /* Alto de la imagen */
+    animation: girar 2s linear infinite; /* Animación de rotación */
+}
+
+/* Definición de la animación */
+@keyframes girar {
+    from {
+        transform: rotate(0deg); /* Comienza la rotación desde 0 grados */
+    }
+    to {
+        transform: rotate(360deg); /* Termina la rotación en 360 grados */
+    }
+}
