@@ -32,7 +32,7 @@ audioPlayer.addEventListener('pause', function () {
 });
 
 // Evento que se activa cuando el audio termina de reproducirse
-audio.addEventListener('ended', function () {
+audioPlayer.addEventListener('ended', function () {
     // Quitar la clase 'rotando' para detener la rotación
     imagen.classList.remove('rotando');
 });
