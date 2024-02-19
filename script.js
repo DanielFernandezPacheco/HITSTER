@@ -37,6 +37,7 @@ audioPlayer.addEventListener('ended', function () {
     imagen.classList.remove('rotando');
 });
 
+
 // Acceder a la cámara del dispositivo
 navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
 .then(function (stream) {
@@ -48,14 +49,25 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
     console.log("Error al acceder a la cámara: " + err);
 });
 
-// Esperar a que el video esté cargado para comenzar a procesar los frames
-document.getElementById('video').addEventListener('loadedmetadata', function () {
+// Esperar a que el video esté cargado para activar la lectura del código QR
+document.getElementById('video-container').addEventListener('mouseover', function () {
+    console.log("clcik")
+var overlay = document.getElementById('overlay');
+overlay.style.display = 'none'; // Oculta la capa semi transparente
+
+var container = document.getElementById('video-container');
+container.style.border = '2px solid #0f0';
+startQRScanner(); // Comienza la lectura del código QR
+});
+
+// Función para comenzar la lectura del código QR
+function startQRScanner() {
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
 // Configurar el tamaño del canvas para que coincida con el video
-canvas.width = this.videoWidth;
-canvas.height = this.videoHeight;
+canvas.width = document.getElementById('video').videoWidth;
+canvas.height = document.getElementById('video').videoHeight;
 
 // Procesar los frames del video
 setInterval(function () {
@@ -67,7 +79,7 @@ setInterval(function () {
         window.location.href = code.data; // Redirigir a la URL
     }
 }, 1000); // Procesar cada segundo
-});
+}
 
 // Función para validar una URL
 function isValidURL(url) {
