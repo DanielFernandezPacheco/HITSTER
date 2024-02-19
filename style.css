@@ -21,15 +21,11 @@ body {
 
 /* Estilos para el reproductor de audio */
 audio {
-    margin-top: 10%; /* Alinea el reproductor al final del contenedor */
-    background-color: pink; /* Cambia el color de fondo del reproductor */
-    border: 2px solid hotpink; /* Cambia el color del borde del reproductor */
-    border-radius: 10px; /* Añade esquinas redondeadas al reproductor */
-
+    margin-top: 7%; /* Alinea el reproductor al final del contenedor */
 }
 /* Cambia el color de los controles de reproducción */
 audio::-webkit-media-controls-panel {
-    background-color: pink;
+    background-color: #ffa66a;
 }
 
 #disco{
