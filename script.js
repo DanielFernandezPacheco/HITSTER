@@ -96,3 +96,38 @@ function toggleAudio() {
 imagen.addEventListener('click', function(){
     toggleAudio();
 })
+
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === 'hidden') {
+        // Si la página está inactiva, detener la transmisión de la cámara
+        stopCamera();
+    } else {
+        // Si la página está activa, iniciar la transmisión de la cámara
+        startCamera();
+    }
+});
+
+// Función para iniciar la transmisión de la cámara
+function startCamera() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            video.srcObject = stream;
+        })
+        .catch(function(error) {
+            console.error('Error accessing camera: ', error);
+        });
+}
+
+// Función para detener la transmisión de la cámara
+function stopCamera() {
+    var stream = video.srcObject;
+    var tracks = stream.getTracks();
+
+    tracks.forEach(function(track) {
+        track.stop();
+    });
+
+    video.srcObject = null;
+}
+
+startCamera()
