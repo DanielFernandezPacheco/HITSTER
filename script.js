@@ -37,7 +37,6 @@ audioPlayer.addEventListener('ended', function () {
     imagen.classList.remove('rotando');
 });
 
-
 // Acceder a la cámara del dispositivo
 navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
 .then(function (stream) {
@@ -63,9 +62,20 @@ setInterval(function () {
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     var code = jsQR(imageData.data, imageData.width, imageData.height);
-    if (code) {
-        console.log('Código QR detectado:', code.data);
-        // Haz lo que necesites con el código QR aquí
+    if (code && isValidURL(code.data)) {
+        console.log('Código QR válido detectado:', code.data);
+        window.location.href = code.data; // Redirigir a la URL
     }
 }, 1000); // Procesar cada segundo
 });
+
+// Función para validar una URL
+function isValidURL(url) {
+var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocolo
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // nombre de dominio
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // dirección IP
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // puerto y ruta
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // parámetros de consulta
+    '(\\#[-a-z\\d_]*)?$','i'); // fragmento
+return !!pattern.test(url);
+}
