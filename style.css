@@ -51,7 +51,7 @@ audio::-webkit-media-controls-panel {
 }
 
 #video-container {
-    margin-top: 10%;
+    margin: auto auto 10% auto;
     position: relative;
     width: 50%;
 }
