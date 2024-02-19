@@ -37,32 +37,29 @@ audioPlayer.addEventListener('ended', function () {
     imagen.classList.remove('rotando');
 });
 
-// Configuración del lector de QR
-Quagga.init({
-    inputStream : {
-        name : "Live",
-        type : "LiveStream",
-        target: document.querySelector('#reader'),    // Selector del contenedor
-        constraints: {
-            width: 640,
-            height: 480,
-            facingMode: "environment" // Opcional: "environment" para la cámara trasera
-        },
-    },
-    decoder : {
-        readers : ["code_128_reader"] // Lista de tipos de códigos a leer (QR, code_128, etc.)
-    }
-}, function(err) {
-    if (err) {
-        console.error(err);
-        return
-    }
-    console.log("Lector de QR inicializado correctamente");
-    Quagga.start();
-});
+document.getElementById('inputFile').addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    var reader = new FileReader();
 
-// Escucha el evento 'detected' para obtener el resultado del escaneo
-Quagga.onDetected(function(result) {
-    console.log("Resultado del escaneo:", result.codeResult.code);
-    // Aquí puedes hacer lo que quieras con el resultado, como redirigir a una página o mostrar información.
+    reader.onload = function(e) {
+        var img = new Image();
+        img.onload = function() {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var code = jsQR(imageData.data, imageData.width, imageData.height);
+            if (code) {
+                console.log('Código QR detectado:', code.data);
+                // Haz lo que necesites con el código QR aquí
+            } else {
+                console.log('No se detectó ningún código QR en la imagen.');
+            }
+        };
+        img.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
 });
