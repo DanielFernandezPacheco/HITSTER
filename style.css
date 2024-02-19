@@ -8,7 +8,8 @@
 
 /* Estilos para el cuerpo de la página */
 body {
-    background-color: #3b3b3b; /* Cambia el color de fondo de la página */
+    background: rgb(255,151,0);
+    background: linear-gradient(90deg, rgba(255,151,0,1) 0%, rgba(190,0,255,1) 100%);
     display: flex;
     flex-direction: column; /* Apila los elementos verticalmente */
     align-items: center; /* Centra horizontalmente */
