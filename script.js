@@ -83,11 +83,5 @@ setInterval(function () {
 
 // Función para validar una URL
 function isValidURL(url) {
-var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocolo
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // nombre de dominio
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // dirección IP
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // puerto y ruta
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // parámetros de consulta
-    '(\\#[-a-z\\d_]*)?$','i'); // fragmento
-return !!pattern.test(url);
+    return url.startsWith('https://danielfernandezpacheco.github.io/HITSTER');
 }
