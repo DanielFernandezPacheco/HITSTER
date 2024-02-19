@@ -54,8 +54,8 @@ document.getElementById('video-container').addEventListener('mouseover', functio
 var overlay = document.getElementById('overlay');
 overlay.style.display = 'none'; // Oculta la capa semi transparente
 
-var container = document.getElementById('video-container');
-container.style.border = '2px solid #0f0';
+var video = document.getElementById('video');
+video.style.border = '2px solid #0f0';
 startQRScanner(); // Comienza la lectura del código QR
 });
 
