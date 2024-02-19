@@ -51,7 +51,6 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
 
 // Esperar a que el video esté cargado para activar la lectura del código QR
 document.getElementById('video-container').addEventListener('mouseover', function () {
-    console.log("clcik")
 var overlay = document.getElementById('overlay');
 overlay.style.display = 'none'; // Oculta la capa semi transparente
 
@@ -85,3 +84,15 @@ setInterval(function () {
 function isValidURL(url) {
     return url.startsWith('https://danielfernandezpacheco.github.io/HITSTER');
 }
+
+function toggleAudio() {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+    } else {
+        audioPlayer.pause();
+    }
+}
+
+imagen.addEventListener('mouseover', function(){
+    toggleAudio();
+})
