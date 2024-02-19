@@ -34,6 +34,7 @@ audio::-webkit-media-controls-panel {
 }
 
 #disco{
+    margin: auto;
     width: 200px; /* Ancho de la imagen */
     height: 200px; /* Alto de la imagen */
 }
@@ -52,7 +53,7 @@ audio::-webkit-media-controls-panel {
 }
 
 #video-container {
-    margin-top: 20%;
+    margin: auto auto 20% auto;
     position: relative;
     width: 50%;
 }
