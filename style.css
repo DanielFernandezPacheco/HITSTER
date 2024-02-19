@@ -25,7 +25,7 @@ audio {
 }
 /* Cambia el color de los controles de reproducción */
 audio::-webkit-media-controls-panel {
-    background-color: #ffa66a;
+    background-color: pink;
 }
 
 #disco{
