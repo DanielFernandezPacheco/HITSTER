@@ -93,6 +93,6 @@ function toggleAudio() {
     }
 }
 
-imagen.addEventListener('mouseover', function(){
+imagen.addEventListener('click', function(){
     toggleAudio();
 })
