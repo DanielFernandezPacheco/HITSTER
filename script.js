@@ -37,29 +37,35 @@ audioPlayer.addEventListener('ended', function () {
     imagen.classList.remove('rotando');
 });
 
-document.getElementById('inputFile').addEventListener('change', function(e) {
-    var file = e.target.files[0];
-    var reader = new FileReader();
 
-    reader.onload = function(e) {
-        var img = new Image();
-        img.onload = function() {
-            var canvas = document.getElementById('canvas');
-            var ctx = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0, img.width, img.height);
-            var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            var code = jsQR(imageData.data, imageData.width, imageData.height);
-            if (code) {
-                console.log('Código QR detectado:', code.data);
-                // Haz lo que necesites con el código QR aquí
-            } else {
-                console.log('No se detectó ningún código QR en la imagen.');
-            }
-        };
-        img.src = e.target.result;
-    };
+// Acceder a la cámara del dispositivo
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+.then(function (stream) {
+    var video = document.getElementById('video');
+    video.srcObject = stream;
+    video.play();
+})
+.catch(function (err) {
+    console.log("Error al acceder a la cámara: " + err);
+});
 
-    reader.readAsDataURL(file);
+// Esperar a que el video esté cargado para comenzar a procesar los frames
+document.getElementById('video').addEventListener('loadedmetadata', function () {
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+
+// Configurar el tamaño del canvas para que coincida con el video
+canvas.width = this.videoWidth;
+canvas.height = this.videoHeight;
+
+// Procesar los frames del video
+setInterval(function () {
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    var code = jsQR(imageData.data, imageData.width, imageData.height);
+    if (code) {
+        console.log('Código QR detectado:', code.data);
+        // Haz lo que necesites con el código QR aquí
+    }
+}, 1000); // Procesar cada segundo
 });
